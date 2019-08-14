@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{dab8ff43-9825-4566-9baf-8c9593cb2811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{f7538280-74e1-487b-ba31-ceff64faaa02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SFINAE">
+      <UniqueIdentifier>{580ef4d1-ae41-49bd-8df5-12857840b685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{3cbd0099-a5c0-42fb-98f6-76469cc9a474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread\thread_wrap">
+      <UniqueIdentifier>{ea53616d-4c50-4355-bd73-2a0cf7fbeea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{eb3d460e-ff92-4296-8d6e-465e50f04452}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="jzhcpp.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="consumer1.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="consumer2.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="consumer3.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="consumer4.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="multiProcess.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="sfinae_main.cpp">
+      <Filter>SFINAE</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\Thread.cpp">
+      <Filter>thread\thread_wrap</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\ThreadLocal.cpp">
+      <Filter>thread\thread_wrap</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\ThreadPool.cpp">
+      <Filter>thread\thread_wrap</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\Timespan.cpp">
+      <Filter>thread\thread_wrap</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\Timestamp.cpp">
+      <Filter>thread\thread_wrap</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="character_test.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="NanoLog.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="base\FactoryTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\PointerTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\ReflectTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\SerializeTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\TupleTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\UnitTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\YepTupleTest.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="multiProcess.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="TThreadPool1.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="SFINAE.h">
+      <Filter>SFINAE</Filter>
+    </ClInclude>
+    <ClInclude Include="test_sfinae.hpp">
+      <Filter>SFINAE</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool0.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Event.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Function.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Mutex.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\MutexImpl.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\ScopedLock.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\SingletonHolder.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Thread.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\ThreadLocal.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\ThreadPool.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Timespan.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Timestamp.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\UseWindows.h">
+      <Filter>thread\thread_wrap</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Typecast.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Convert.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="catch.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="stopwatch.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="NanoLog.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="printfc.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Basic.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Database.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Factory.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Pointer.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Reflect.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Serialization.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\Tuple.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\UnitTest.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\YepTuple.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\factory1.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\intrusive_ptr.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\policy.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\techniques.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\typeinfo.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="redirectcout.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
