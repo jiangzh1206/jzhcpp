@@ -4,6 +4,61 @@
 
 #include <windows.h>
 #include <string>
+#include <stack>
+
+// to 10 进制
+int R2T(std::string n, int r)
+{
+    int len = n.length();
+    int ans = 0;
+    int i = 0;
+    while (i < len) {
+        ans *= r;
+        ans += n[i] - '0';
+        i++;
+    }
+    return ans;
+}
+
+// to r 进制
+inline std::string T2R(int n, int r)
+{
+     
+    char str[64] = { 0 };
+    std::stack<int>s;
+    while (n) {
+        s.push(n%r);
+        n = n / r;
+    }
+    int i = 0;
+    while (!s.empty()) {
+        switch (s.top()) {
+        case 10:
+            str[i++] = 'A';
+            break;
+        case 11:
+            str[i++] = 'B';
+            break;
+        case 12:
+            str[i++] = 'C';
+            break;
+        case 13:
+            str[i++] = 'D';
+            break;
+        case 14:
+            str[i++] = 'E';
+            break;
+        case 15:
+            str[i++] = 'F';
+            break;
+        default:
+            str[i++] = s.top() + '0';
+        }
+        s.pop();
+    }
+
+    return str;
+}
 
 
 // <to windows gbk>
