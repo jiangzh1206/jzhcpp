@@ -35,7 +35,7 @@ namespace detail {
 
 		template<typename Func>
 		Event(timer_id id, timestamp start, duration period, Func&& handler)
-			: id(id), start(start), period(period), handler(std::forward<Func>(handler))
+			: id(id), start(start), period(period), handler(std::forward<Func>(handler)), valid(true)
 		{
 		}
 
@@ -48,27 +48,28 @@ namespace detail {
 		Event &operator=(const Event &r) = delete;
 	};
 
-	// next timeout event
-	struct TimeEvent
-	{
-		timestamp	next;
-		timer_id	ref;
-	};
+    // next 触发时间
+    struct TimeEvent
+    {
+        timestamp next;
+        timer_id ref;
+    };
 
-	inline bool operator<(const TimeEvent& lhs, const TimeEvent& rhs)
-	{
-		return lhs.next < rhs.next;
-	}
+    // 放到set中排序
+    inline bool operator<(const TimeEvent& lhs, const TimeEvent& rhs)
+    {
+        return lhs.next < rhs.next;
+    }
 } // namespace detail
 
 class Timer
 {
 	using ScopedLock = std::unique_lock<std::mutex>;
 
-	// timer thread
-	std::mutex					m_mutex;
-	std::condition_variable		m_cv;
-	std::thread					m_worker;
+    // timer thread
+    std::thread m_worker;
+    std::mutex m_mutex;
+    std::condition_variable m_cv;
 
 	// terminate thread
 	std::atomic_bool			m_done;
@@ -79,8 +80,8 @@ class Timer
 	// sorted queue, next timeout at ites top
 	std::multiset<detail::TimeEvent> m_timeEvents;
 
-	// // A list of ids to be re-used. If possible, ids are used from this pool.
-	std::stack<JTimer::timer_id>	m_freeIds;
+    // 重复使用timer_id
+    std::stack<ns_timer::timer_id> m_freeIds;
 
 public:
 	Timer()
@@ -89,9 +90,18 @@ public:
 		m_worker = std::thread(std::bind(&Timer::run, this));
 	}
 
-	~Timer()
-	{
-		m_done.store(true);
+public:
+    static Timer* Ptr() 
+    {
+        static Timer timer;
+        return &timer;
+    }
+
+public:
+
+    ~Timer()
+    {
+        m_done.store(true);
 
 		m_cv.notify_all();
 		m_worker.join();
