@@ -3,9 +3,24 @@
 
 #include "pch.h"
 #include <iostream>
+struct AnyType {
+    template <typename T>
+    operator T();
+};
+template <typename T, typename = void, typename ...Ts>
+struct CountMember {
+    constexpr static size_t value = sizeof...(Ts) - 1;
+};
+
+template <typename T, typename ...Ts>
+struct CountMember < T, std::void_t<decltype(T{ Ts{}... }) > , Ts... > {
+    constexpr static size_t value = CountMember<T, void, Ts..., AnyType>::value;
+};
 
 int main()
 {
+    auto xx = CountMember<SA>::value;
+
     std::cout << "Hello World!\n"; 
 }
 
