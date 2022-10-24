@@ -146,7 +146,8 @@ consteval auto member_count() {
 }
 
 constexpr decltype(auto) visit_members(auto&& object, auto&& visitor) {
-	constexpr auto count = member_count<decltype(object)>();
+	using type = std::remove_cvref_t<decltype(object)>;
+	constexpr auto count = member_count<type>();
 	if constexpr (count == 0) {
 		return visitor();
 	}
