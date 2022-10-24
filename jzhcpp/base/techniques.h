@@ -1,20 +1,20 @@
 #pragma once
 
 /*
-*   Ä£°åÆ«ÌØ»¯
-*   ¾Ö²¿Àà
-*   ĞÍ±ğºÍÊıÖµÓ³Éä(Int2Type,Type2Int class templates)
-*   ¿É×ª»»
+*   æ¨¡æ¿åç‰¹åŒ–
+*   å±€éƒ¨ç±»
+*   å‹åˆ«å’Œæ•°å€¼æ˜ å°„(Int2Type,Type2Int class templates)
+*   å¯è½¬æ¢
 *   NullType EmptyType
 *   Traits
 */
 
-// 0 array ·Ç·¨
+// 0 array éæ³•
 #define STATIC_CHECK(expr) { char unnamed[(expr) : 1 ? 0]; }
 
 namespace MCPP
 {
-// 1.¾Ö²¿Àà, Ä³¸ö½Ó¿Ú×ª»»³ÉÁí¸ö½Ó¿Ú
+// 1.å±€éƒ¨ç±», æŸä¸ªæ¥å£è½¬æ¢æˆå¦ä¸ªæ¥å£
 class Interface
 {
 public:
@@ -37,14 +37,14 @@ Interface* MakeAdapter(const T& obj, const U& arg)
     std::cout << "local class" << "\n";
 }
 
-// 2.ÕûÊıÓ³Éäµ½ÀàĞÍ ±àÒëÆÚ·ÖÅÉ Int2Type<0> Int2Type<1>²»Í¬ÀàĞÍ
+// 2.æ•´æ•°æ˜ å°„åˆ°ç±»å‹ ç¼–è¯‘æœŸåˆ†æ´¾ Int2Type<0> Int2Type<1>ä¸åŒç±»å‹
 template<int V>
 struct Int2Type
 {
     enum { value = V };
 };
 
-// ÀàĞÍÓ³Éäµ½ÀàĞÍ
+// ç±»å‹æ˜ å°„åˆ°ç±»å‹
 template<typename T>
 struct Type2Type
 {
@@ -60,7 +60,7 @@ class NiftyContainer
         std::cout << "do something true" << "\n";
     }
 
-    // ÖØÔØ
+    // é‡è½½
     void DoSomething(T* obj, Int2Type<false>)
     {
         // obj do something
@@ -81,7 +81,7 @@ T* Create(const U& arg, Type2Type<T>)
     return new T(arg);
 }
 
-// 3.ÌØ»¯º¯ÊıÄ£°å
+// 3.ç‰¹åŒ–å‡½æ•°æ¨¡æ¿
 template<typename U>
 TObject* Create(const U& arg, Type2Type<TObject>)
 {
@@ -89,7 +89,7 @@ TObject* Create(const U& arg, Type2Type<TObject>)
 }
 
 
-// 4.FromÊÇ·ñ¿É×ª»»³ÉTo
+// 4.Fromæ˜¯å¦å¯è½¬æ¢æˆTo
 template<typename From, typename To>
 struct Conversion
 {
@@ -99,20 +99,20 @@ struct Conversion
         char dummy[2]; 
     };
     
-    // ²»ÓÃÊµÏÖ, sizeof ²»¶ÔÆäÒıÊıÇóÖµ
+    // ä¸ç”¨å®ç°, sizeof ä¸å¯¹å…¶å¼•æ•°æ±‚å€¼
     static Small Test(To);
     static Big Test(...);
     static From MakeT();
     
-    // MakeT·µ»ØFromÊÇ·ñÄÜµ÷ÓÃTest(To)
+    // MakeTè¿”å›Fromæ˜¯å¦èƒ½è°ƒç”¨Test(To)
     enum{value = sizeof(Test(MakeT())) == sizeof(Small) };
-    // Ë«Ïò×ª»»
+    // åŒå‘è½¬æ¢
     enum{con2way = value && Conversion<To, From>::value};
-    // ÏàÍ¬ÀàĞÍ
+    // ç›¸åŒç±»å‹
     enum { same = 0 };
 };
 
-// ÏàÍ¬ÀàĞÍÌØ»¯
+// ç›¸åŒç±»å‹ç‰¹åŒ–
 template<typename T>
 struct Conversion<T, T>
 {
@@ -121,8 +121,63 @@ struct Conversion<T, T>
     enum { same = 1 };
 };
 
-// 5.NullType ²»ÄÜÉú³É¶ÔÏó, EmptyType ¿É±»¼Ì³Ğ,¿ÉÊÓÎªtemplateÈ±Ê¡
+// 5.NullType ä¸èƒ½ç”Ÿæˆå¯¹è±¡, EmptyType å¯è¢«ç»§æ‰¿,å¯è§†ä¸ºtemplateç¼ºçœ
 class NullType; 
 class EmptyType{};
 
 }
+
+/*
+struct Any {
+	template<typename T>
+	operator T();
+};
+
+template<typename T, typename... Args>
+consteval auto member_count() {
+	// å¦‚æœæ¨¡æ¿T{Args..., Any{}},ä¸èƒ½å®ä¾‹åŒ–ï¼Œè¯´æ˜Tçš„æˆå‘˜ä¸ªæ•°ç­‰äºArgså‚æ•°åŒ…å¤§å°
+	if constexpr (requires { T{ {Args{}}..., {Any{}} }; } == false) {
+		return sizeof...(Args);
+	}
+	else {
+		// é€’å½’è°ƒç”¨æ²¡æ¬¡å¤šä¼ ä¸ªAny
+		return member_count<T, Args..., Any>();
+	}
+}
+
+constexpr decltype(auto) visit_members(auto&& object, auto&& visitor) {
+	constexpr auto count = member_count<decltype(object)>();
+	if constexpr (count == 0) {
+		return visitor();
+	}
+	else if constexpr (count == 1) {
+		auto&& [a1] = object;
+		return visitor(a1);
+	}
+	else if constexpr (count == 2) {
+		auto&& [a1, a2] = object;
+		return visitor(a1, a2);
+	}
+	else if constexpr (count == 3) {
+		auto&& [a1, a2, a3] = object;
+		return visitor(a1, a2);
+	} // else if ...
+	else {
+
+	}
+}
+
+struct SA{
+	int a;
+	int b;
+	char c;
+};
+
+
+int main() {
+	int count = member_count<SA>();
+	std::cout << count << "\n";
+
+	return 0;
+}
+*/
